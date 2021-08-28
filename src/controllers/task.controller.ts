@@ -7,7 +7,7 @@ export class TaskController {
     async createTask (request: Request, response: Response): Promise<object> {
         const {Name, Date}: ITask = request.body;
 
-        const taskCreate = await new TaskService().createTask({Name, Date});
+        const taskCreate = await new TaskService().createTask({Name: Name, Date: Date});
 
         return response.json(taskCreate);
     }

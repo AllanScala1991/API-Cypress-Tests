@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { LoginController } from "./controllers/login.controller";
 import { recoveryPasswordController } from "./controllers/recoveryPassword.controller";
+import { TaskController } from "./controllers/task.controller";
 import { UserController } from "./controllers/user.controller";
 
 const router = Router();
@@ -18,6 +19,10 @@ router.put('/user', new UserController().updateUser);
 router.delete('/user/:id', new UserController().deleteUser);
 
 // ROTAS DAS TAREFAS
+router.get('/task/:Name', new TaskController().getTask);
+router.post('/task', new TaskController().createTask);
+router.put('/task', new TaskController().updateTask);
+router.delete('/task/:id', new TaskController().deleteTask);
 
 
 export { router };

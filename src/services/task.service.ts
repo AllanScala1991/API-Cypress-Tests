@@ -10,15 +10,15 @@ export class TaskService {
             return {status: false, message: "Todos os campos devem ser preenchidos."}
         }
 
-        const taskExists = await TasksModel.taskEntitie().findOne({
+        const taskExists = await TasksModel.taskEntitie().findAll({
             raw: true,
             where: {
                 Name: task.Name,
-                Date: task.Date
+                Date: new Date(task.Date)
             }
         })
 
-        if (Object.keys(taskExists).length > 0) {
+        if (taskExists.length > 0) {
             return {status: false, message: "Essa tarefa já foi cadastrada."}
         }
 
