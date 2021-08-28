@@ -3,6 +3,7 @@ import { LoginController } from "./controllers/login.controller";
 import { recoveryPasswordController } from "./controllers/recoveryPassword.controller";
 import { TaskController } from "./controllers/task.controller";
 import { UserController } from "./controllers/user.controller";
+import { Autenticated } from "./middleware/authenticated";
 
 const router = Router();
 
@@ -13,16 +14,16 @@ router.post('/login', new LoginController().login);
 router.post('/recovery', new recoveryPasswordController().recoveryPassword);
 
 //USER ROUTES
-router.get('/user/:id', new UserController().getUser);
+router.get('/user/:id', Autenticated.userAutenticated ,new UserController().getUser);
 router.post('/user', new UserController().createUser);
-router.put('/user', new UserController().updateUser);
-router.delete('/user/:id', new UserController().deleteUser);
+router.put('/user', Autenticated.userAutenticated ,new UserController().updateUser);
+router.delete('/user/:id', Autenticated.userAutenticated ,new UserController().deleteUser);
 
-// ROTAS DAS TAREFAS
-router.get('/task/:Name', new TaskController().getTask);
-router.post('/task', new TaskController().createTask);
-router.put('/task', new TaskController().updateTask);
-router.delete('/task/:id', new TaskController().deleteTask);
+// TASKS ROUTES
+router.get('/task/:Name', Autenticated.userAutenticated ,new TaskController().getTask);
+router.post('/task', Autenticated.userAutenticated ,new TaskController().createTask);
+router.put('/task', Autenticated.userAutenticated ,new TaskController().updateTask);
+router.delete('/task/:id', Autenticated.userAutenticated ,new TaskController().deleteTask);
 
 
 export { router };
