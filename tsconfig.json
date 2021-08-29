@@ -1,15 +1,18 @@
 {
   "compilerOptions": {                      /* Enable incremental compilation */
-    "target": "es5",                                /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', 'ES2021', or 'ESNEXT'. */
+    "target": "es5",   
+    "lib": ["es5", "dom"],
+    "types": ["cypress"],                          /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', 'ES2021', or 'ESNEXT'. */
     "module": "commonjs",                           /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', or 'ESNext'. */                        /* Concatenate and emit output to single file. */
     "outDir": "./build",                              /* Redirect output structure to the directory. */
-    "rootDir": "./src",
+    "rootDirs": ["./src", "./cypress"],
     "strict": false,             /* Enable strict 'bind', 'call', and 'apply' methods on functions. */
     "strictPropertyInitialization": false,      /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */
     "esModuleInterop": true,
     "experimentalDecorators": true,              /* Enables experimental support for ES7 decorators. */
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,                           /* Skip type checking of declaration files. */
-    "forceConsistentCasingInFileNames": true        /* Disallow inconsistently-cased references to the same file. */
-  }
+    "forceConsistentCasingInFileNames": true     /* Disallow inconsistently-cased references to the same file. */
+  },
+  "include": ["**/*.ts", "cypress/plugins/index.js"],
 }

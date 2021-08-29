@@ -13,9 +13,9 @@ export class UserController {
     }
 
     async getUser (request: Request, response: Response): Promise<object> {
-        const id = request.params.id;
+        const Name = request.params.Name;
 
-        const userGet = await new UserService().getUser(id);
+        const userGet = await new UserService().getUser(Name);
 
         return response.json(userGet);
     }

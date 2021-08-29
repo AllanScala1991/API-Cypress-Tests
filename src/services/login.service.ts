@@ -16,8 +16,8 @@ export class LoginService {
                 Username: user.Username
             }
         })
-
-        if (Object.keys(userExists).length <= 0) return {status: false, message: "Usuário e/ou Senha incorretos."}
+        
+        if (userExists == null) return {status: false, message: "Usuário e/ou Senha incorretos."}
 
         const passwordEqual = await bcrypt.compare(user.Password, userExists['Password']);
 

@@ -36,8 +36,6 @@ export class TaskService {
     }
 
     async getTask (Name: string): Promise<{status: boolean, message?: string, data?: object}> {
-        if (!Name) return {status: false, message: "O campo deve ser preenchido."}
-
         const searchTask = await TasksModel.taskEntitie().findAll({
             raw: true,
             where: {
@@ -53,16 +51,17 @@ export class TaskService {
     }
 
     async updateTask (id: string, task: ITask): Promise<{status: boolean, message: string}> {
+        console.log(id)
         if (!id) return {status: false, message: "ID inválido"}
 
-        const taskExists = await TasksModel.taskEntitie().findOne({
+        const taskExists = await TasksModel.taskEntitie().findAll({
             raw: true,
             where: {
                 id: id
             }
         });
 
-        if (Object.keys(taskExists).length <= 0) {
+        if (taskExists.length <= 0) {
             return {status: false, message: "Tarefa não localizada."}
         }
 
@@ -82,7 +81,7 @@ export class TaskService {
     }
 
     async deleteTask(id: string): Promise<{status: boolean, message: string}>  {
-        if (!id) return {status: false, message: "ID inválido."}
+        if (id == "all") await TasksModel.taskEntitie().destroy({where: {}, truncate: true})
 
         const taskDelete = await TasksModel.taskEntitie().destroy({
             where: {

@@ -14,7 +14,7 @@ router.post('/login', new LoginController().login);
 router.post('/recovery', new recoveryPasswordController().recoveryPassword);
 
 //USER ROUTES
-router.get('/user/:id', Autenticated.userAutenticated ,new UserController().getUser);
+router.get('/user/:Name', Autenticated.userAutenticated ,new UserController().getUser);
 router.post('/user', new UserController().createUser);
 router.put('/user', Autenticated.userAutenticated ,new UserController().updateUser);
 router.delete('/user/:id', Autenticated.userAutenticated ,new UserController().deleteUser);

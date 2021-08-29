@@ -47,14 +47,12 @@ export class UserService {
         return {status: true, message: "Usuário cadastrado com sucesso."}
     }
 
-    async getUser (id: string): Promise<{status: boolean, data?: object, message?: string}> {
-
-        if (!id) return {status: false, message: "ID inválido"}
+    async getUser (Name: string): Promise<{status: boolean, data?: object, message?: string}> {
 
         const getUserInfo = await UserModel.userEntities().findAll({
             raw: true,
             where: {
-                id: id
+                Name: Name
             }
         });
 
@@ -91,8 +89,10 @@ export class UserService {
     }
 
     async deleteUser(id: string): Promise<{status: boolean, message: string}> {
-        if (!id) return {status: false, message: "ID inválido"}
-
+        if (id == "all"){
+            await UserModel.userEntities().destroy({where: {}, truncate: true});
+            return {status: true, message: "Usuário deletado com sucesso."}
+        }
         const userExist = await UserModel.userEntities().findAll({
             raw: true,
             where: {
