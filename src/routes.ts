@@ -9,8 +9,6 @@ const router = Router();
 //LOGIN ROUTES
 router.post('/login', new LoginController().login);
 
-
-
 //USER ROUTES
 router.get('/user/:Name', Autenticated.userAutenticated ,new UserController().getUser);
 router.post('/user', new UserController().createUser);
